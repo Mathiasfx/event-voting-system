@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Persona } from "../interfaces/persona";
 
 interface FemaleDuelProps {
-  onVote: (candidate: string) => void;
+  onVote: (category: "mujeres" | "hombres", candidate: string) => void;
   participants: Persona[];
 }
 
@@ -44,7 +44,7 @@ const FemaleDuel: React.FC<FemaleDuelProps> = ({ onVote, participants }) => {
             </motion.div>
             <button
               className="bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded mt-2"
-              onClick={() => onVote(participant.nombre)}
+              onClick={() => onVote("mujeres", participant.nombre)}
             >
               {participant.nombre}
             </button>

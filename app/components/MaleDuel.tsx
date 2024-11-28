@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 interface MaleDuelProps {
-  onVote: (candidate: string) => void;
+  onVote: (category: "mujeres" | "hombres", candidate: string) => void;
   participants: Persona[];
 }
 
@@ -44,7 +44,7 @@ const MaleDuel: React.FC<MaleDuelProps> = ({ onVote, participants }) => {
               />
             </motion.div>
             <button
-              onClick={() => onVote(participant.nombre)}
+              onClick={() => onVote("hombres", participant.nombre)}
               className="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
             >
               {participant.nombre}
