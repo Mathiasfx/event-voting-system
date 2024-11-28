@@ -1,0 +1,78 @@
+
+
+.title{
+    font-family: var(--font-hawainas);
+  }
+
+  .subtitle{
+    font-family: var(--font-halodek);
+}
+
+.leaft {
+    margin-top: 3rem;
+    position: absolute;
+    rotate: 180deg;
+    top: 20px;
+
+    transform: translateY(-48%);
+    z-index: 3;
+    -webkit-transform: translateY(-48%);
+    -moz-transform: translateY(-48%);
+    -ms-transform: translateY(-48%);
+    -o-transform: translateY(-48%);
+}
+
+.logo {
+    position: absolute;
+    top: 100px; 
+    text-align: center; 
+    font-size: 3.9rem; 
+}
+.biolap{
+    color: rgb(201, 201, 77);
+}
+.fest{
+    color: plum;
+}
+
+
+
+@media (max-width: 768px) {
+    .leaft {
+        top: 20px; 
+        width: 350px; 
+        height: auto;
+        rotate: 182deg;
+        margin-left: 1rem; 
+    }
+
+    .logo {
+        top: 120px; 
+        font-size: 3.5rem; 
+    }
+}
+
+@media (max-width: 480px) {
+    .leaft {
+        top: 20px;
+        width: 300px;
+        height: auto;
+        rotate: 183deg;
+        margin-left: 1.3rem;
+    }
+
+    .logo {
+        top: 100px;
+        font-size: 2.5rem;
+    }
+}
+
+@media (min-width:416px) and (max-width: 639px) {
+    .textobalance{
+        margin-top: 100px;
+    }
+    .contenido {
+        padding: 10px !important;
+        height: 100vh !important;
+    }
+}
