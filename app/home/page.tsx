@@ -55,32 +55,36 @@ export default function HomePage() {
       mujeres: [
         {
           id: 1,
-          nombre: "Maria Angeles",
-          img: "/assets/images/Maria Angeles.png",
+          nombre: "Gabriela Medina",
+          img: "/assets/images/Gabriela Medina.png",
         },
         {
           id: 2,
-          nombre: "Carolina Sanchez",
-          img: "/assets/images/Carolina Sanchez.png",
+          nombre: "Micaela Yammetti",
+          img: "/assets/images/Micaela Yammetti.png",
         },
         {
           id: 3,
-          nombre: "Monica Aguilar",
-          img: "/assets/images/Monica Aguilar.png",
+          nombre: "Mónica Cobran",
+          img: "/assets/images/Monica Cobran.png",
         },
       ],
       hombres: [
         {
           id: 1,
-          nombre: "Damina Fernandez",
-          img: "/assets/images/Damina Fernandez.png",
+          nombre: "Aldo Angeletti",
+          img: "/assets/images/Aldo Angeletti.png",
         },
         {
           id: 2,
-          nombre: "Franco Perez",
-          img: "/assets/imagesFranco Perez.png",
+          nombre: "Ignacio Moretti",
+          img: "/assets/images/Ignacio Moretti.png",
         },
-        { id: 3, nombre: "Elias Gomez", img: "/assets/images/Elias Gomez.png" },
+        {
+          id: 3,
+          nombre: "Santiago Lloveras",
+          img: "/assets/images/Santiago Lloveras.png",
+        },
       ],
     });
   }, []);
@@ -247,48 +251,72 @@ export default function HomePage() {
   //#endregion
 
   return (
-    <div className="w-full h-full sm:h-[100vh] flex flex-col items-center justify-center bg-gradient-to-r from-blue-400 to-blue-700 animate-gradient-y contenido">
-      <div className="flex flex-col items-center justify-center w-full">
+    <>
+      <div className="corner-images">
         <Image
-          src="/assets/images/greenleaftlong.png"
-          alt="background"
-          width={320}
-          height={320}
-          className="leaft"
+          src="/assets/images/greenleaftshort.png"
+          alt="Imagen"
+          width={200}
+          height={200}
+          className="top-left palma"
         />
-        <h1 className="text-5xl mt-14 text-center text-white title logo">
-          ALHOA <span className="biolap">BIOLAP</span>{" "}
-          <span className="fest">FEST</span>
-        </h1>
-        <button
+        <Image
+          src="/assets/images/greenleaftshort.png"
+          alt="Imagen"
+          width={150}
+          height={150}
+          className="top-right palma"
+        />
+      </div>
+      {/* Separacion */}
+      <div className="w-full h-full sm:h-[100vh] flex flex-col items-center justify-center   ">
+        <div className="flex flex-col items-center justify-center w-full relative">
+          <Image
+            src="/assets/images/greenleaftlong.png"
+            alt="background"
+            width={400}
+            height={100}
+            className="leaft pt-10 sm:pt-0"
+          />
+          <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
+            <h1 className="text-5xl mt-14 text-center text-white title logo">
+              ALOHA <span className="biolap">BIOLAP</span>{" "}
+              <span className="fest">FEST</span>
+            </h1>
+          </div>
+        </div>
+
+        {hasVotedShe && hasVotedHe && step === 4 ? (
+          <div className="h-full min-h-screen w-full flex justify-center items-center flex-col flex-1">
+            <h1 className="text-4xl mb-6 text-center text-white title">
+              ¡Ya tenemos registrado tu voto! Muchas gracias.
+            </h1>
+          </div>
+        ) : (
+          <>
+            {step === 0 && <Welcome setStep={setStep} />}
+            {step === 1 && (
+              <FemaleDuel
+                onVote={handleVote}
+                participants={participants.mujeres}
+              />
+            )}
+            {step === 2 && (
+              <MaleDuel
+                onVote={handleVote}
+                participants={participants.hombres}
+              />
+            )}
+            {step === 3 && <Thanks />}
+          </>
+        )}
+        {/* <button
           onClick={resetVotes}
           className="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
         >
           Reiniciar Votación
-        </button>
+        </button> */}
       </div>
-
-      {hasVotedShe && hasVotedHe && step === 4 ? (
-        <div className="h-full min-h-screen w-full flex justify-center items-center flex-col flex-1">
-          <h1 className="text-4xl mb-6 text-center text-white title">
-            ¡Ya tenemos registrado tu voto! Muchas gracias.
-          </h1>
-        </div>
-      ) : (
-        <>
-          {step === 0 && <Welcome setStep={setStep} />}
-          {step === 1 && (
-            <FemaleDuel
-              onVote={handleVote}
-              participants={participants.mujeres}
-            />
-          )}
-          {step === 2 && (
-            <MaleDuel onVote={handleVote} participants={participants.hombres} />
-          )}
-          {step === 3 && <Thanks />}
-        </>
-      )}
-    </div>
+    </>
   );
 }
