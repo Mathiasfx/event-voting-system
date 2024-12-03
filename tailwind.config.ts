@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        'custom1766': '1766px', // Define el ancho mínimo
+      },
       'animation': {
         'gradient-x':'gradient-x 15s ease infinite',
         'gradient-y':'gradient-y 15s ease infinite',

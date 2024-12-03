@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useEffect, useState } from "react";
@@ -19,6 +20,7 @@ const Resultados = () => {
   const [femaleVotes, setFemaleVotes] = useState<VoteData[]>([]);
   const [totalVotes, setTotalVotes] = useState<number>(0);
   const [loading, setLoading] = useState(true);
+  const [showWinners, setShowWinners] = useState(false);
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -82,10 +84,41 @@ const Resultados = () => {
     };
 
     fetchResults();
+    // Configurar temporizador para mostrar solo ganadores
+    const timer = setTimeout(() => {
+      if (femaleVotes.length === 0 || maleVotes.length === 0) return;
+      setShowWinners(true);
+    }, 8000);
+
+    return () => clearTimeout(timer); // Limpia el temporizador
   }, []);
 
+  // Obtener los nombres con más votos de cada grupo
+  const getMaxVoteParticipant = (votes: VoteData[]) => {
+    return votes.reduce(
+      (max, participant) => (participant.votes > max.votes ? participant : max),
+      votes[0]
+    );
+  };
+
+  const rey = getMaxVoteParticipant(maleVotes);
+  const reina = getMaxVoteParticipant(femaleVotes);
+
+  // Filtrar las listas según si se deben mostrar solo ganadores
+  const filteredMaleVotes = showWinners
+    ? maleVotes.filter((vote) => vote.name === rey.name)
+    : maleVotes;
+
+  const filteredFemaleVotes = showWinners
+    ? femaleVotes.filter((vote) => vote.name === reina.name)
+    : femaleVotes;
+
   if (loading) {
-    return <div>Cargando resultados...</div>;
+    return (
+      <div className="w-full h-screen sm:h-[100vh] flex flex-col items-center justify-center bg-gradient-to-r from-blue-400 to-blue-700 animate-gradient-y contenido">
+        <div className="w-12 h-12 border-4 border-t-4 border-transparent border-t-white border-l-green-200 rounded-full animate-spin"></div>
+      </div>
+    );
   }
 
   const renderParticipant = (result: VoteData, maxVotes: number) => {
@@ -135,17 +168,17 @@ const Resultados = () => {
         <motion.div
           style={{
             width: "100%",
-            height: "8px",
-            borderRadius: "4px",
+            height: "20px",
+            borderRadius: "16px",
             backgroundColor: "rgba(255, 255, 255, 0.3)",
             overflow: "hidden",
-            marginTop: "10px",
+            marginTop: "22px",
           }}
         >
           <motion.div
             style={{
               height: "100%",
-              borderRadius: "4px",
+              borderRadius: "16px",
               backgroundColor: "limegreen",
             }}
             initial={{ width: "0%" }}
@@ -183,7 +216,7 @@ const Resultados = () => {
       />
       <div className="contenidos w-full inset-0 pt-2 sm:pt-0">
         <h2 className="text-center mb-4 text-3xl font-bold">
-          Resultados de la Votación
+          {showWinners ? "Ganadores" : "Resultados de la Votación"}
         </h2>
         <motion.div
           initial={{ opacity: 0 }}
@@ -195,7 +228,7 @@ const Resultados = () => {
             justifyContent: "center",
           }}
         >
-          {femaleVotes.map((result) =>
+          {filteredFemaleVotes.map((result) =>
             renderParticipant(result, maxFemaleVote)
           )}
         </motion.div>
@@ -210,7 +243,9 @@ const Resultados = () => {
             marginTop: "50px",
           }}
         >
-          {maleVotes.map((result) => renderParticipant(result, maxMaleVote))}
+          {filteredMaleVotes.map((result) =>
+            renderParticipant(result, maxMaleVote)
+          )}
         </motion.div>
         <h3 className="text-center text-2xl font-bold text-white">
           Total de votos: {totalVotes}
