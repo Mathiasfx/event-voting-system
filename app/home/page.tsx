@@ -5,9 +5,9 @@ import {
   collection,
   doc,
   getDoc,
-  getDocs,
+  //getDocs,
   setDoc,
-  deleteDoc,
+  //deleteDoc,
   onSnapshot,
 } from "firebase/firestore";
 import Welcome from "../components/Welcome";
@@ -165,35 +165,35 @@ export default function HomePage() {
   //#endregion
 
   // Función para reiniciar la votación
-  const resetVotes = async () => {
-    try {
-      // Borra todos los votos de la colección 'votes'
-      const votesRef = collection(db, "votes");
-      const querySnapshot = await getDocs(votesRef);
+  // const resetVotes = async () => {
+  //   try {
+  //     // Borra todos los votos de la colección 'votes'
+  //     const votesRef = collection(db, "votes");
+  //     const querySnapshot = await getDocs(votesRef);
 
-      // Elimina cada documento (voto) en la colección
-      querySnapshot.forEach(async (docSnap) => {
-        await deleteDoc(doc(votesRef, docSnap.id));
-      });
+  //     // Elimina cada documento (voto) en la colección
+  //     querySnapshot.forEach(async (docSnap) => {
+  //       await deleteDoc(doc(votesRef, docSnap.id));
+  //     });
 
-      // Aquí configuramos una nueva "versión" del sistema de votación en la colección 'settings'
-      const settingsRef = doc(db, "settings", "vote"); // Documento 'vote' para la versión
+  //     // Aquí configuramos una nueva "versión" del sistema de votación en la colección 'settings'
+  //     const settingsRef = doc(db, "settings", "vote"); // Documento 'vote' para la versión
 
-      const newVersion = {
-        voteVersion: new Date().getTime(), // Usamos el timestamp como nueva versión
-        lastReset: new Date(), // Fecha de último reinicio
-      };
+  //     const newVersion = {
+  //       voteVersion: new Date().getTime(), // Usamos el timestamp como nueva versión
+  //       lastReset: new Date(), // Fecha de último reinicio
+  //     };
 
-      await setDoc(settingsRef, newVersion, { merge: true }); // Guardamos la nueva configuración
+  //     await setDoc(settingsRef, newVersion, { merge: true }); // Guardamos la nueva configuración
 
-      console.log("La configuración de la votación ha sido actualizada.");
-    } catch (error) {
-      console.error(
-        "Error al resetear los votos y configurar la nueva versión:",
-        error
-      );
-    }
-  };
+  //     console.log("La configuración de la votación ha sido actualizada.");
+  //   } catch (error) {
+  //     console.error(
+  //       "Error al resetear los votos y configurar la nueva versión:",
+  //       error
+  //     );
+  //   }
+  // };
 
   //#region Función para votar
   const handleVote = async (category: "mujeres" | "hombres", name: string) => {
@@ -310,12 +310,12 @@ export default function HomePage() {
             {step === 3 && <Thanks />}
           </>
         )}
-        <button
+        {/* <button
           onClick={resetVotes}
           className="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
         >
           Reiniciar Votación
-        </button>
+        </button> */}
       </div>
     </>
   );
