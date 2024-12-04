@@ -22,17 +22,17 @@ const MaleDuel: React.FC<MaleDuelProps> = ({ onVote, participants }) => {
           <motion.div
             key={participant.id + participant.nombre}
             className="flex flex-col items-center mb-4 cursor-pointer"
-            initial={{ opacity: 0, scale: 0.5 }} // Estado inicial
-            animate={{ opacity: 1, scale: 1 }} // Estado final
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{
               duration: 0.5,
-              delay: index * 0.2, // Animación escalonada
+              delay: index * 0.2,
               ease: "easeOut",
             }}
           >
             <motion.div
               className="rounded-full border-4 border-blue-800 overflow-hidden"
-              whileHover={{ scale: 1.1 }} // Escala al pasar el mouse
+              whileHover={{ scale: 1.1 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
               <Image

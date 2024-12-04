@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import "../home/home.scss";
 
 import Image from "next/image";
+import { removeAccents } from "../utils/Remove";
 
 type VoteData = {
   name: string;
@@ -49,7 +50,7 @@ const Resultados = () => {
             (name) => ({
               name,
               votes: maleVoters[name],
-              photoUrl: `/assets/images/${name}.png`,
+              photoUrl: `/assets/images/${removeAccents(name)}.png`,
             })
           );
 
@@ -57,7 +58,7 @@ const Resultados = () => {
             (name) => ({
               name,
               votes: femaleVoters[name],
-              photoUrl: `/assets/images/${name}.png`,
+              photoUrl: `/assets/images/${removeAccents(name)}.png`,
             })
           );
 

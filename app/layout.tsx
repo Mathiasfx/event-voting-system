@@ -34,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body
         className={`${Hawainas.variable} ${HaloDek.variable} ${openSans.variable}  antialiased`}
         suppressHydrationWarning
