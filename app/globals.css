@@ -111,7 +111,7 @@ body {
   .contenidos {
     justify-content: center;
     align-items: center;
-    margin-top: 420px;
+    /* margin-top: 420px; */
   }
 }
 
@@ -122,6 +122,6 @@ body {
   .contenidos {
     justify-content: center;
     align-items: center;
-    margin-top: 1000px;
+    /* margin-top: 1000px; */
   }
 }

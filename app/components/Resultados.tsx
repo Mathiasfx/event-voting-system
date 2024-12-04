@@ -219,44 +219,45 @@ const Resultados = () => {
           ease: "linear",
           repeat: Infinity,
         }}
-      />
-      <div className="contenidos w-full inset-0 pt-2 sm:pt-0">
-        <h2 className="text-center mb-4 text-3xl font-bold">
-          {showWinners ? "Ganadores" : "Resultados de la Votación"}
-        </h2>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-          }}
-        >
-          {filteredFemaleVotes.map((result) =>
-            renderParticipant(result, maxFemaleVote)
-          )}
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            marginTop: "50px",
-          }}
-        >
-          {filteredMaleVotes.map((result) =>
-            renderParticipant(result, maxMaleVote)
-          )}
-        </motion.div>
-        <h3 className="text-center text-2xl font-bold text-white">
-          Total de votos: {totalVotes}
-        </h3>
-      </div>
+      >
+        <div className="contenidos w-full inset-0 pt-2 sm:pt-0">
+          <h2 className="text-center mb-4 text-3xl font-bold">
+            {showWinners ? "Ganadores" : "Resultados de la Votación"}
+          </h2>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+            }}
+          >
+            {filteredFemaleVotes.map((result) =>
+              renderParticipant(result, maxFemaleVote)
+            )}
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              marginTop: "50px",
+            }}
+          >
+            {filteredMaleVotes.map((result) =>
+              renderParticipant(result, maxMaleVote)
+            )}
+          </motion.div>
+          <h3 className="text-center text-2xl font-bold text-white">
+            Total de votos: {totalVotes}
+          </h3>
+        </div>
+      </motion.div>
     </div>
   );
 };
