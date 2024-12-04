@@ -11,10 +11,10 @@ const FemaleDuel: React.FC<FemaleDuelProps> = ({ onVote, participants }) => {
   return (
     <div className="w-full h-full sm:mt-0 mt-[300px]  flex flex-col items-center justify-center">
       <h1 className="text-4xl mt-[100px]  title text-center text-white">
-        Duelo Femenino
+        Votá a la Reina Tiki
       </h1>
       <h3 className="text-center text-white text-xl mt-2 mb-[50px] p-3 md:p-0">
-        ¿Para vos quién de ellas es la Reina Tiki de Aloha Biolap Fest?
+        Elegí quién queres que sea la Reina Tiki del Aloha Biolap Fest
       </h3>
       <div className="flex  justify-around w-full mb-6 flex-wrap max-w-screen-lg">
         {participants.map((participant, index) => (
