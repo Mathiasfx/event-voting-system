@@ -253,9 +253,7 @@ const Resultados = () => {
               renderParticipant(result, maxMaleVote)
             )}
           </motion.div>
-          <h3 className="text-center text-2xl font-bold text-white">
-            Total de votos: {totalVotes}
-          </h3>
+          
         </div>
       </motion.div>
     </div>
